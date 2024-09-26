@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClinicApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <%= csrf_meta_tags %>  <!-- Keep this one and remove the duplicate below -->
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>  <!-- This loads Importmaps, including Rails UJS -->
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <% if user_signed_in? %>
+        Logged in as: <%= current_user.email %> |
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+        <!-- This sign-out link is sufficient. Removed the duplicate. -->
+      <% end %>
+    </nav>
+    
+    <%= yield %>
+  </body>
+</html>

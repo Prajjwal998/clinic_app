@@ -1,0 +1,25 @@
+<h1>Doctor Dashboard</h1>
+
+<h2>Patients Registered Per Day</h2>
+<%= line_chart @patients_by_day, xtitle: "Day", ytitle: "Number of Patients" %>
+
+
+<h2>Your Patients</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Contact Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.name %></td>
+        <td><%= patient.age %></td>
+        <td><%= patient.contact_number %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
