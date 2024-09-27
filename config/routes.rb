@@ -17,6 +17,4 @@ Rails.application.routes.draw do
 
   get 'doctor_dashboard', to: 'doctors#dashboard'
   root to: 'patients#index'
-  delete 'logout', to: 'users#logout', as: :logout
-
 end
