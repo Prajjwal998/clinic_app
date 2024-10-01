@@ -69,3 +69,13 @@ end
 gem 'devise'
 gem 'chartkick'
 gem 'groupdate'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
