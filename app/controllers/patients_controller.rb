@@ -3,16 +3,17 @@ class PatientsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_receptionist, only: [:new, :create, :edit, :update, :destroy]
 
-  def index
-    if current_user.doctor?
-      @patients = current_user.patients
-    else
+   def index
+    if current_user.receptionist?
       @patients = Patient.all
+    elsif current_user.doctor?
+      @patients = Patient.where(doctor: current_user)
+    else
+      @patients = Patient.none
     end
-    # @patient_counts = Patient.group("DATE(created_at)").count
+    @patient_count_by_date = Patient.group_by_day(:created_at).count
   end
-
-  # GET /patients/1 or /patients/1.json
+ 
   def show
   end
 
@@ -63,13 +64,16 @@ class PatientsController < ApplicationController
     end
   end
 
+  def graph_data
+    # Your logic to gather the data
+    render json: { labels: labels, data: data }
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_patient
       @patient = Patient.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def patient_params
       params.require(:patient).permit(:name, :age, :contact_number, :doctor_id)
     end
