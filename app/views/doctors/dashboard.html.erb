@@ -3,7 +3,8 @@
 <h2>Patients Registered Per Day</h2>
 <%= line_chart @patients_by_day, xtitle: "Day", ytitle: "Number of Patients" %>
 
-
+<%#= line_chart @patients_by_day %>
+<%#= line_chart User.group_by_day(:created_at).count %>
 <h2>Your Patients</h2>
 <table>
   <thead>

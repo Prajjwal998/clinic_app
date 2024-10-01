@@ -1,15 +1,11 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  # Before actions to set the resource if needed
+  before_action :configure_permitted_parameters
 
   private
 
-  # Extend the sign_up parameters to include the role
-  def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :role)
-  end
-
-  # If you have other parameter methods, include them
-  def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :role)
+ def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role, :email, :password, :password_confirmation, :current_password])
   end
 end
+
