@@ -6,7 +6,7 @@
     
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= turbo_include_tags %>
@@ -16,7 +16,7 @@
   <body>
     <nav>
       <% if user_signed_in? %>
-        Logged in as: <%= current_user.email %> |
+        Logged in as: <%= current_user.name %> |
         <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% end %>
     </nav>
