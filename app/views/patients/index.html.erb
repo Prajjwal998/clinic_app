@@ -22,7 +22,7 @@
         <td><%= patient.name %></td>
         <td><%= patient.age %></td>
         <td><%= patient.contact_number %></td>
-        <td><%= patient.doctor.email %></td>
+        <td><%= patient.doctor.name %></td>
         <% if current_user.receptionist? %>
           <td>
             <%= link_to 'Edit', edit_patient_path(patient) %>
